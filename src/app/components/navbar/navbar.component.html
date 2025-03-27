@@ -1,7 +1,7 @@
 
 <nav>
     <div id="linksContainer">
-        
+
         @if(!isUserLogged){
             <a [routerLinkActive]="'activeLink'" [routerLinkActiveOptions]="{ exact: true }" class="link" routerLink="/">Login</a>
             <a [routerLinkActive]="'activeLink'" [routerLinkActiveOptions]="{ exact: true }" class="link" routerLink="/register">Register</a>
@@ -9,6 +9,7 @@
 
 
         @if(isUserLogged){
+            <a [routerLinkActive]="'activeLink'" [routerLinkActiveOptions]="{ exact: true }" class="link" routerLink="/movies">Movies</a>
             <a [routerLinkActive]="'activeLink'" [routerLinkActiveOptions]="{ exact: true }" class="link" routerLink="/profil">Profil</a>
             <a class="link" (click)="logout()">Logout</a>
         }
