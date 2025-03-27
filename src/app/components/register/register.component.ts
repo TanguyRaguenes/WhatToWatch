@@ -14,10 +14,10 @@ export class RegisterComponent {
   private readonly authService:AuthService=inject(AuthService)
 
   public registerForm:FormGroup=new FormGroup({
-    username:new FormControl('',[Validators.required]),
-    email:new FormControl('',[Validators.required, Validators.email]),
-    password:new FormControl('',[Validators.required]),
-    passwordConfirmation:new FormControl('',[Validators.required])
+    username:new FormControl('tata',[Validators.required]),
+    email:new FormControl('tata@gmail.com',[Validators.required, Validators.email]),
+    password:new FormControl('123',[Validators.required]),
+    passwordConfirmation:new FormControl('123',[Validators.required])
 
   })
 
@@ -28,7 +28,7 @@ export class RegisterComponent {
         username :this.registerForm.value.username, 
         email: this.registerForm.value.email, 
         password: this.registerForm.value.password}
-        
+
       this.authService.register(user)
     }
   }

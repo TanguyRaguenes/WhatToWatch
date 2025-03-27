@@ -13,8 +13,8 @@ export class LoginComponent {
   private readonly authService:AuthService=inject(AuthService)
 
     public loginForm:FormGroup=new FormGroup({
-      email:new FormControl('',[Validators.required]),
-      password:new FormControl('',[Validators.required])
+      email:new FormControl('tata@gmail.com',[Validators.required]),
+      password:new FormControl('123',[Validators.required])
     })
 
     public onSubmit(){
