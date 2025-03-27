@@ -1,0 +1,15 @@
+<p>login works!</p>
+<div>
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+
+        <label for="emailInput">Email</label>
+        <input type="email" name="emailInput" id="emailInput" formControlName="email">
+
+        <label for="passwordInput">Password</label>
+        <input type="password" name="passwordInput" id="passwordInput" formControlName="password">
+
+
+        <input [disabled]="loginForm.invalid" type="submit" value="Submit">
+
+    </form>
+</div>
