@@ -1,5 +1,5 @@
-<p>register works!</p>
-<div>
+
+<div class="formContainer">
     <form [formGroup]="registerForm" (submit)="onSubmit()">
 
         <label for="usernameInput">Username</label>
@@ -15,6 +15,6 @@
         <input type="password" name="passwordConfirmationInput" id="passwordConfirmationInput" formControlName="passwordConfirmation">
 
 
-        <input [disabled]="registerForm.invalid" type="submit" value="Submit">
+        <input class="formButton" [disabled]="registerForm.invalid" type="submit" value="Submit">
     </form>
 </div>

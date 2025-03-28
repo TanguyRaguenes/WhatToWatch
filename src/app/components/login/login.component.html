@@ -1,5 +1,5 @@
-<p>login works!</p>
-<div>
+
+<div class="formContainer">
     <form [formGroup]="loginForm" (submit)="onSubmit()">
 
         <label for="emailInput">Email</label>
@@ -9,7 +9,7 @@
         <input type="password" name="passwordInput" id="passwordInput" formControlName="password">
 
 
-        <input [disabled]="loginForm.invalid" type="submit" value="Submit">
+        <input class="formButton" [disabled]="loginForm.invalid" type="submit" value="Submit">
 
     </form>
 </div>
