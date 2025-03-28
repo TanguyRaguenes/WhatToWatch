@@ -1,14 +1,4 @@
 
-img{
-    object-fit: fill;
-    width: 100%;
-    height: 100%;
-}
-p{
-    overflow-x: auto;
-    font-size: x-small;
-    text-align: center;
-}
 
 #moviesContainer{
     display: flex;
@@ -19,22 +9,84 @@ p{
     justify-content: center;
 }
 
+#buttonsContainer{
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1;
+}
+
+.svg{
+    transition: transform 0.3s ease;
+}
+
+.svg:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.svgFav{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(255, 255, 255, 0.5);
+    color: rgb(255, 0, 0, 0.5);
+    border-radius: 5px;
+
+}
+.svgFav:hover{
+    background-color: rgb(255, 255, 255, 1);
+    color: rgb(255, 0, 0, 1);
+
+}
+
 .movieContainer{
     display: flex;
     flex-direction: column;
     width:30%;
-    height:50vh
+    height:20vh
+}
 
-    
+.movieInfoContainer{
+    height: 20%;
+    width: 100%;
+    border: 1px;
+    border-radius: 2px;
+    border-color: black;
+    border-style: solid;
+    overflow:auto;
 }
-.imgContainer{
+
+.movieInfoContainer p{
+    font-size: x-small;
+    text-align: center;
+}
+
+.movieImgContainer{
     height: 80%;
+    width: 100%;
+    position: relative;
 }
+
+.movieImgContainer img{
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
+
 
 @media (min-width: 1025px){
-    p{
-        overflow-x: auto;
+    .movieInfoContainer p{
         font-size: large;
         text-align: center;
+    }
+    .movieContainer{
+        display: flex;
+        flex-direction: column;
+        width:15%;
+        height:40vh
     }
 }

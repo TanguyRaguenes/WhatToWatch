@@ -1,16 +1,89 @@
 
+<div id="buttonsContainer">
+    <svg  
+        (click)="displayFavoritesMovies()"
+        xmlns="http://www.w3.org/2000/svg"  
+        width="40"  
+        height="40"  
+        viewBox="0 0 24 24"  
+        fill="currentColor"  
+        class="icon icon-tabler icons-tabler-filled icon-tabler-heart svg">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" />
+    </svg>
+
+    <svg
+        (click)="displayAllMovies()"  
+        xmlns="http://www.w3.org/2000/svg"  
+        width="40"  
+        height="40"  
+        viewBox="0 0 24 24"  
+        fill="none"  
+        stroke="currentColor"  
+        stroke-width="2"  
+        stroke-linecap="round"  
+        stroke-linejoin="round"  
+        class="icon icon-tabler icons-tabler-outline icon-tabler-movie svg">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+        <path d="M8 4l0 16" />
+        <path d="M16 4l0 16" />
+        <path d="M4 8l4 0" />
+        <path d="M4 16l4 0" />
+        <path d="M4 12l16 0" />
+        <path d="M16 8l4 0" />
+        <path d="M16 16l4 0" />
+    </svg>
+</div>
 
 <div id="moviesContainer">   
 
     @for(element of moviesListToDisplay; track element.id){
 
         <div class="movieContainer">
-            <p>{{element.title}}</p>
 
-            <div class="imgContainer">
-                <img class="poster" [src]="`https://image.tmdb.org/t/p/w200${element.poster_path}`" [alt]="`${element.title}`">
+            <div class="movieInfoContainer">
+                <p>{{element.title}}</p>
             </div>
             
+
+     
+            <div class="movieImgContainer">
+                <img class="poster" [src]="`https://image.tmdb.org/t/p/w200${element.poster_path}`" [alt]="`${element.title}`">
+                @if(!isMovieInFavoritesList(element)){
+                    <svg  
+                        (click)="addMovieToFavorites(element)"
+                        xmlns="http://www.w3.org/2000/svg"  
+                        width="24"  
+                        height="24"  
+                        viewBox="0 0 24 24"  
+                        fill="none"  
+                        stroke="currentColor"  
+                        stroke-width="2"  
+                        stroke-linecap="round"  
+                        stroke-linejoin="round"  
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-heart svgFav svg">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
+                    </svg>
+                }@else{
+                    <svg  
+                        (click)="removeMovieFromFavorites(element)"
+                        xmlns="http://www.w3.org/2000/svg"  
+                        width="24"  
+                        height="24"  
+                        viewBox="0 0 24 24"  
+                        fill="currentColor"  
+                        class="icon icon-tabler icons-tabler-filled icon-tabler-heart svgFav svg">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M6.979 3.074a6 6 0 0 1 4.988 1.425l.037 .033l.034 -.03a6 6 0 0 1 4.733 -1.44l.246 .036a6 6 0 0 1 3.364 10.008l-.18 .185l-.048 .041l-7.45 7.379a1 1 0 0 1 -1.313 .082l-.094 -.082l-7.493 -7.422a6 6 0 0 1 3.176 -10.215z" />
+                    </svg>
+                }
+                
+            
+            </div>
+
+
         </div>
     
     }
