@@ -1,1 +1,18 @@
-<p>movies works!</p>
+
+
+<div id="moviesContainer">   
+
+    @for(element of moviesListToDisplay; track element.id){
+
+        <div class="movieContainer">
+            <p>{{element.title}}</p>
+
+            <div class="imgContainer">
+                <img class="poster" [src]="`https://image.tmdb.org/t/p/w200${element.poster_path}`" [alt]="`${element.title}`">
+            </div>
+            
+        </div>
+    
+    }
+    
+</div>

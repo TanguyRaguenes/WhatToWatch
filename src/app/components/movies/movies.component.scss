@@ -1,0 +1,40 @@
+
+img{
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
+p{
+    overflow-x: auto;
+    font-size: x-small;
+    text-align: center;
+}
+
+#moviesContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.movieContainer{
+    display: flex;
+    flex-direction: column;
+    width:30%;
+    height:50vh
+
+    
+}
+.imgContainer{
+    height: 80%;
+}
+
+@media (min-width: 1025px){
+    p{
+        overflow-x: auto;
+        font-size: large;
+        text-align: center;
+    }
+}
