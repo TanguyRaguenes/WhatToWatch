@@ -3,10 +3,11 @@ import { MoviesApiService } from '../../services/movies-api.service';
 import { Movie } from '../../interfaces/movie';
 import { CommonModule } from '@angular/common';
 import { MoviesService } from '../../services/movies.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-movies',
-  imports: [CommonModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './movies.component.html',
   styleUrl: './movies.component.scss'
 })
@@ -42,6 +43,21 @@ export class MoviesComponent implements OnInit {
 
   }
 
+  public searchMovieForm:FormGroup=new FormGroup({
+    movieName:new FormControl('Fast And Furious',[Validators.required]),
+  })
+
+  public searchMovieFormSubmit(){
+    if(this.searchMovieForm.valid){
+      console.log(this.searchMovieForm.value)
+      this.moviesApiService.searchMovie(this.searchMovieForm.value.movieName).subscribe(element=>{
+        this.moviesListToDisplay=element.results
+      })
+      
+    }
+  
+  }
+
   public addMovieToFavorites(movie:Movie){
     this.moviesService.addMovieToFavorites(movie)
   }
@@ -66,5 +82,7 @@ export class MoviesComponent implements OnInit {
   public displayAllMovies(){
     this.moviesListToDisplay=[...this.allMoviesList]
   }
+
+
 
 }

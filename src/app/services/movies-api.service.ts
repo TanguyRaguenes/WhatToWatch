@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Movie } from '../interfaces/movie';
 import { TmdbApiResponse } from '../interfaces/tmdb-api-response';
 
@@ -49,7 +49,11 @@ export class MoviesApiService {
 
   }
 
+  public searchMovie(movieName:string): Observable<TmdbApiResponse>{
 
+    return this.http.get<TmdbApiResponse>(`${this.url}search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`, { headers: this.headers })
+
+  }
 
 
 }
