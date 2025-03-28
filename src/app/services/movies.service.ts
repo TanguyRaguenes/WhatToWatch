@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Movie } from '../interfaces/movie';
 import { FirebaseService } from './firebase.service';
@@ -12,10 +12,17 @@ export class MoviesService {
 
   public favoritesMoviesList:BehaviorSubject<Movie[]>=new BehaviorSubject<Movie[]>([])
 
+  constructor(){
+    this.firebaseService.getFavorites().then(element=>{
+      this.favoritesMoviesList.next(element)
+    })
+  }
+
   addMovieToFavorites(movie:Movie){
-    this.favoritesMoviesList.next([...this.favoritesMoviesList.value,movie])
-    this.firebaseService.addFavorites([...this.favoritesMoviesList.value,movie])
-    console.log("addMovieToFavorites")
+    const currentList:Movie[] = this.favoritesMoviesList.value ?? [];
+    this.favoritesMoviesList.next([...currentList, movie]);
+    this.firebaseService.addFavorites([...this.favoritesMoviesList.value]);
+    console.log("addMovieToFavorites");
   }
 
   removeMovieFromFavorites(movie:Movie){
@@ -24,6 +31,7 @@ export class MoviesService {
     )
 
     this.favoritesMoviesList.next(tempFavoriteMoviesList)
+    this.firebaseService.addFavorites([...this.favoritesMoviesList.value])
     console.log("removeMovieFromFavorites")
   }
 }

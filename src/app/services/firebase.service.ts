@@ -1,5 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { collection, deleteDoc, doc, Firestore, getDocs, setDoc } from '@angular/fire/firestore';
+import { inject, Injectable, NgZone } from '@angular/core';
+import {doc, Firestore, getDoc,setDoc } from '@angular/fire/firestore';
 import { Movie } from '../interfaces/movie';
 
 @Injectable({
@@ -8,22 +8,26 @@ import { Movie } from '../interfaces/movie';
 export class FirebaseService {
 
   constructor() { }
-
-  private readonly firestore:Firestore=inject(Firestore)
+  
+  private readonly firestore = inject(Firestore);
+  private readonly ngZone = inject(NgZone);
 
   async addFavorites(movies: Movie[]): Promise<void> {
     const favRef = doc(this.firestore, `favorites/test`);
-    await setDoc(favRef, {movies});
+    await this.ngZone.run(() => setDoc(favRef, {movies}));
   }
 
-  async getFavorites(): Promise<any[]> {
-    const snapshot = await getDocs(collection(this.firestore, `favorites/test`));
-    return snapshot.docs.map(doc => doc.data());
+  async getFavorites(): Promise<Movie[]> {
+    const favRef = doc(this.firestore, 'favorites/test');
+    return await this.ngZone.run(async () => {
+      const snapshot = await getDoc(favRef);
+      return snapshot.data()?.['movies'] ?? [];
+    });
   }
 
-  async removeFavorite(movieId: string): Promise<void> {
-    const favRef = doc(this.firestore, `favorites/test`);
-    await deleteDoc(favRef);
-  }
+  // async removeFavorite(movie:Movie): Promise<void> {
+  //   const favRef = doc(this.firestore, `favorites/test`);
+  //   await deleteDoc(favRef);
+  // }
 
 }
